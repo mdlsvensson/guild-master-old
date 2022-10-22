@@ -1,0 +1,18 @@
+[gd_scene format=2]
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="UILeft" type="MarginContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 1080.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UILeft"]
+margin_top = 10.0
+margin_right = 480.0
+margin_bottom = 1070.0
