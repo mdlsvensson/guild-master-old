@@ -4,9 +4,10 @@ func get_class() -> String: return 'MainCamera'
 
 export var speed: int
 
+var speed_with_modifier: int
 var input_vector: Vector2 = Vector2.ZERO
 
-onready var world: Node2D = get_tree().get_root().get_child(0)
+onready var world: Node2D = get_tree().get_root().get_node("World")
 
 func _process(delta: float) -> void:
 	input_vector = Vector2.ZERO
@@ -14,10 +15,12 @@ func _process(delta: float) -> void:
 	input_vector.y = Input.get_action_strength('camera_down') - Input.get_action_strength('camera_up')
 	input_vector = input_vector.normalized()
 
+	speed_with_modifier = speed * (Input.get_action_strength("map_speed") + 1)
+
 	move()
 
 func move() -> void:
-	position += input_vector * speed
+	position += input_vector * speed_with_modifier
 
 	var chunks_center_point: Vector2 = world.loaded_chunks_center_point
 
