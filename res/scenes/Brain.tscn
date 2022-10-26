@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://res/scripts/ai/composite_nodes/BehaviorTreeSequence.gd" type="Script" id=1]
+[ext_resource path="res://res/scripts/ai/BehaviorTree.gd" type="Script" id=2]
+[ext_resource path="res://res/scripts/ai/leaf_nodes/SetBlackboard.gd" type="Script" id=3]
+[ext_resource path="res://res/scripts/ai/composite_nodes/BehaviorTreeSelector.gd" type="Script" id=4]
+[ext_resource path="res://res/scripts/ai/leaf_nodes/CheckBlackboard.gd" type="Script" id=5]
+[ext_resource path="res://res/scripts/ai/leaf_nodes/actions/LeafAttackTarget.gd" type="Script" id=6]
+[ext_resource path="res://res/scripts/ai/leaf_nodes/BehaviorTreeSimpleCall.gd" type="Script" id=7]
+
+[node name="Brain" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Sequence" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="is_dying" type="Node" parent="Sequence"]
+script = ExtResource( 3 )
+node_property_or_function_name = "is_dying"
+
+[node name="get_los_units" type="Node" parent="Sequence"]
+script = ExtResource( 3 )
+node_property_or_function_name = "get_los_units"
+blackboard_property_name = "los_units"
+
+[node name="get_target" type="Node" parent="Sequence"]
+script = ExtResource( 3 )
+node_property_or_function_name = "get_target"
+blackboard_property_name = "target"
+
+[node name="get_nav_path" type="Node" parent="Sequence"]
+script = ExtResource( 3 )
+node_property_or_function_name = "get_nav_path"
+blackboard_property_name = "path"
+
+[node name="Selector" type="Node" parent="Sequence"]
+script = ExtResource( 4 )
+
+[node name="Die" type="Node" parent="Sequence/Selector"]
+script = ExtResource( 1 )
+
+[node name="is_dying" type="Node" parent="Sequence/Selector/Die"]
+script = ExtResource( 5 )
+blackboard_property_name = "is_dying"
+
+[node name="kill" type="Node" parent="Sequence/Selector/Die"]
+script = ExtResource( 7 )
+node_function_name = "kill"
+
+[node name="Attack" type="Node" parent="Sequence/Selector"]
+script = ExtResource( 1 )
+
+[node name="target" type="Node" parent="Sequence/Selector/Attack"]
+script = ExtResource( 5 )
+blackboard_property_name = "target"
+
+[node name="LeafAttackTarget" type="Node" parent="Sequence/Selector/Attack"]
+script = ExtResource( 6 )
+
+[node name="Patrol" type="Node" parent="Sequence/Selector"]
+script = ExtResource( 4 )
+
+[node name="path" type="Node" parent="Sequence/Selector/Patrol"]
+script = ExtResource( 5 )
+blackboard_property_name = "path"
