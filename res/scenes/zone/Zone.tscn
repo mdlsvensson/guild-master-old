@@ -1,14 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/hex-tiles/hex_128_128_white.png" type="Texture" id=1]
+[ext_resource path="res://assets/hex-tiles/hex_hover.png" type="Texture" id=1]
 [ext_resource path="res://res/scenes/zone/Zone.gd" type="Script" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 59, 0, 61, 0, 120, 35, 120, 105, 61, 140, 59, 140, 0, 105, 0, 35 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ) ]
+outlines = [ PoolVector2Array( 59, 0, 61, 0, 120, 35, 120, 105, 61, 140, 59, 140, 0, 105, 0, 35 ) ]
 
 [node name="Zone" type="Area2D"]
 script = ExtResource( 2 )
+hover_sprite_node = NodePath("HoverSprite")
+navigation_polygon_node = NodePath("NavigationPolygonInstance")
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="HexSprite" type="Sprite" parent="."]
+centered = false
+
+[node name="HoverSprite" type="Sprite" parent="."]
+visible = false
+z_index = 1
 texture = ExtResource( 1 )
 centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, 29, 62, 1, 66, 1, 128, 29, 128, 99, 66, 127, 62, 127, 0, 99 )
+polygon = PoolVector2Array( 0, 35, 59, 0, 61, 0, 120, 35, 120, 105, 61, 140, 59, 140, 0, 105 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
