@@ -9,18 +9,144 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Selectable",
+"class": "Agent",
+"language": "GDScript",
+"path": "res://res/scripts/Agent.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTree",
+"language": "GDScript",
+"path": "res://res/scripts/ai/BehaviorTree.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeAlwaysSucceed",
+"language": "GDScript",
+"path": "res://res/scripts/ai/decorator_nodes/BehaviorTreeAlwaysSucceed.gd"
+}, {
+"base": "BehaviorTreeNode",
+"class": "BehaviorTreeBaseNode",
+"language": "GDScript",
+"path": "res://res/scripts/ai/BehaviorTreeBaseNode.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeInverter",
+"language": "GDScript",
+"path": "res://res/scripts/ai/decorator_nodes/BehaviorTreeInverter.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeLeaf",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/BehaviorTreeLeaf.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTreeNode",
+"language": "GDScript",
+"path": "res://res/scripts/ai/BehaviorTreeNode.gd"
+}, {
+"base": "Reference",
+"class": "BehaviorTreeResult",
+"language": "GDScript",
+"path": "res://res/scripts/ai/BehaviorTreeResult.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeSelector",
+"language": "GDScript",
+"path": "res://res/scripts/ai/composite_nodes/BehaviorTreeSelector.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeSequence",
+"language": "GDScript",
+"path": "res://res/scripts/ai/composite_nodes/BehaviorTreeSequence.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BehaviorTreeSimpleCall",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/BehaviorTreeSimpleCall.gd"
+}, {
+"base": "Node",
+"class": "Blackboard",
+"language": "GDScript",
+"path": "res://res/scripts/ai/Blackboard.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "CheckBlackboard",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/CheckBlackboard.gd"
+}, {
+"base": "Agent",
+"class": "Hero",
+"language": "GDScript",
+"path": "res://res/scenes/hero/Hero.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "LeafAttackTarget",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/actions/LeafAttackTarget.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "LeafFollow",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/actions/LeafFollow.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "LeafSearch",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/actions/LeafSearch.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "LeafUnitPatrol",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/actions/LeafUnitPatrol.gd"
+}, {
 "base": "Camera2D",
 "class": "MainCamera",
 "language": "GDScript",
 "path": "res://res/scenes/main_camera/MainCamera.gd"
 }, {
 "base": "Area2D",
+"class": "Selectable",
+"language": "GDScript",
+"path": "res://res/scripts/Selectable.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "SetBlackboard",
+"language": "GDScript",
+"path": "res://res/scripts/ai/leaf_nodes/SetBlackboard.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://res/scenes/ui/UI.gd"
+}, {
+"base": "Selectable",
 "class": "Zone",
 "language": "GDScript",
 "path": "res://res/scenes/zone/Zone.gd"
 } ]
 _global_script_class_icons={
+"Agent": "",
+"BehaviorTree": "res://editor_icons/behavior_tree.svg",
+"BehaviorTreeAlwaysSucceed": "res://editor_icons/always_succeed.svg",
+"BehaviorTreeBaseNode": "",
+"BehaviorTreeInverter": "res://editor_icons/inverter.svg",
+"BehaviorTreeLeaf": "res://editor_icons/leaf.svg",
+"BehaviorTreeNode": "",
+"BehaviorTreeResult": "",
+"BehaviorTreeSelector": "res://editor_icons/selector.svg",
+"BehaviorTreeSequence": "res://editor_icons/sequence.svg",
+"BehaviorTreeSimpleCall": "res://editor_icons/call_simple_function.svg",
+"Blackboard": "res://editor_icons/blackboard.svg",
+"CheckBlackboard": "res://editor_icons/check_blackboard.svg",
+"Hero": "",
+"LeafAttackTarget": "",
+"LeafFollow": "",
+"LeafSearch": "",
+"LeafUnitPatrol": "",
 "MainCamera": "",
+"Selectable": "",
+"SetBlackboard": "res://editor_icons/set_blackboard.svg",
+"UI": "",
 "Zone": ""
 }
 
@@ -29,6 +155,10 @@ _global_script_class_icons={
 config/name="Guild Master"
 run/main_scene="res://res/scenes/world/World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://res/scripts/Global.gd"
 
 [display]
 
@@ -91,6 +221,11 @@ camera_down={
 camera_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+map_speed={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 
