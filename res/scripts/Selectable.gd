@@ -4,6 +4,8 @@ func get_class() -> String: return 'Selectable'
 
 signal clicked(zone)
 
+export var hover_sprite_node: NodePath
+
 var hover_sprite: Sprite
 
 onready var world: Node2D = get_tree().get_root().get_node("World")
@@ -14,7 +16,9 @@ func _ready() -> void:
 	connect("mouse_entered", self, "_on_Selectable_mouse_entered")
 	connect("mouse_exited", self, "_on_Selectable_mouse_exited")
 
-	hover_sprite = get_node("HoverSprite")
+	hover_sprite = get_node_or_null(hover_sprite_node)
+
+	if !hover_sprite: printerr('No hover sprite for %s' % get_script())
 
 func _on_Selectable_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_action_pressed("select"):
