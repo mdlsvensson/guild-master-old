@@ -10,6 +10,8 @@ radius = 16.0
 [node name="Hero" type="Area2D"]
 z_index = 1
 script = ExtResource( 2 )
+hover_sprite_node = NodePath("HoverSprite")
+navigation_agent_node = NodePath("NavigationAgent2D")
 
 [node name="HeroSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -21,3 +23,5 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
